@@ -113,8 +113,12 @@ public class Main {
     }
 
     public static void checkProduct(String name){
-        int amount = storeInventory.get(name);
-        System.out.printf("%s has qty: %d", name, amount);
+        if (storeInventory.containsKey(name)){ // Added check for existence (wasn't able to add in part 1)
+            int amount = storeInventory.get(name);
+            System.out.printf("%s is in stock: %d%n", name, amount);
+        } else {
+            System.out.println("Product not found."); // New message for non-existent product
+        }
     }
 
     public static void updateProduct(String name, int quantity){
@@ -138,6 +142,10 @@ public class Main {
     }
 
     public static void viewInventory(){
+        if(storeInventory.isEmpty()){
+            System.out.println("Inventory is empty.");
+            return;
+        }
         for (Map.Entry<String, Integer> entry: storeInventory.entrySet()){
             System.out.println("\n\n--- All Grocery Items ---");
             System.out.println(entry.getKey() + " x" + entry.getValue());
