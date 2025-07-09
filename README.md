@@ -1,2 +1,4 @@
-# FECP-Java-Session3-Grocery-Store
+# General Malit
+## Lab 1 - Grocery Store
 
+![output.png](output.png)
