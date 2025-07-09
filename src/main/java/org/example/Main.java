@@ -16,23 +16,17 @@ public class Main {
         boolean menuRunning = true;
 
         do{
-            System.out.println("--- Grocery Inventory Menu ---");
+            System.out.println("\n\n--- Grocery Inventory Menu ---");
             System.out.println("1. View Inventory");
             System.out.println("2. Add Product");
             System.out.println("3. Check Product");
             System.out.println("4. Update Stock");
             System.out.println("5. Remove Product");
             System.out.println("6. Exit");
-            choice = sc.nextInt();
+            System.out.print("Please enter your choice: ");
 
-            try{
-                choice = sc.nextInt();
-            }catch(InputMismatchException e){
-                System.out.println("Invalid input. Please enter a number (1-4).");
-                sc.next();
-                choice = 0;
-                continue;
-            }
+            choice = sc.nextInt();
+            sc.nextLine();
 
             switch(choice){
                 case 1: //View Inventory
@@ -45,7 +39,7 @@ public class Main {
                     boolean validQuantity = false; // Flag for the inner do-while loop
 
                     do {
-                        System.out.print("How much are we going to add (quantity must be > 0): ");
+                        System.out.print("How much are we going to add: ");
                         try {
                             addQuantity = sc.nextInt();
                             if (addQuantity > 0) {
@@ -87,7 +81,6 @@ public class Main {
 
                         } catch (InputMismatchException e) {
                             System.out.println("The input must be a whole number.");
-                            sc.next();
                         } finally {
                             sc.nextLine();
                         }
@@ -129,7 +122,7 @@ public class Main {
             System.out.printf("There is not such product that exists.");
             return;
         } else{
-            storeInventory.put(name, quantity)
+            storeInventory.put(name, quantity);
             System.out.printf("Product %s has been successfully updated to %d.", name, quantity);
         }
     }
@@ -139,13 +132,14 @@ public class Main {
             System.out.printf("There is not such product that exists.");
             return;
         } else{
-            storeInventory.remove(name)
+            storeInventory.remove(name);
             System.out.printf("Product %s has been successfully removed.", name);
         }
     }
 
     public static void viewInventory(){
         for (Map.Entry<String, Integer> entry: storeInventory.entrySet()){
+            System.out.println("\n\n--- All Grocery Items ---");
             System.out.println(entry.getKey() + " x" + entry.getValue());
         }
     }
